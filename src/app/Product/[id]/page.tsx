@@ -5,7 +5,10 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 
-const page = async ({ params: { id } }: { params: { id: string } }) => {
+export const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
+  // Await the params promise
+  const resolvedParams = await params;
+
   const query = `*[ _type == "product" && _id == $id]{
     name,
     "id": _id,
@@ -15,7 +18,7 @@ const page = async ({ params: { id } }: { params: { id: string } }) => {
     "image": image.asset._ref
   }[0]`;
 
-  const product: Product | null = await client.fetch(query, { id });
+  const product: Product | null = await client.fetch(query, { id: resolvedParams.id });
 
   if (!product) {
     return (
@@ -120,4 +123,4 @@ const ProductPage = ({ product }: { product: Product }) => {
   );
 };
 
-export default page;
+export default Page;
