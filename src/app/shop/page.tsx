@@ -1,5 +1,5 @@
-import { client } from '@/sanity/lib/client';
-import ProductListing from '../components/ProductListing';
+// import { client } from '@/sanity/lib/client';
+// import ProductListing from '../components/ProductListing';
 import Link from 'next/link';
 import Image from 'next/image';
 import Header from '../components/header';
@@ -9,27 +9,27 @@ import ShopLine from '../components/shop';
 
 
 
-async function fetchProducts(): Promise<Product[]> {
-  const query = `*[_type == "product"]{
-    category,
-    "id": _id,
-    price,
-    description,
-    stockLevel,
-    imagePath,
-    discountPercentage,
-    isFeaturedProduct,
-    name,
-    "image":image.asset._ref
-  }`;
-  const products = await client.fetch(query);
-  console.log(products)
-  return products;
+// async function fetchProducts(): Promise<Product[]> {
+//   const query = `*[_type == "product"]{
+//     category,
+//     "id": _id,
+//     price,
+//     description,
+//     stockLevel,
+//     imagePath,
+//     discountPercentage,
+//     isFeaturedProduct,
+//     name,
+//     "image":image.asset._ref
+//   }`;
+//   const products = await client.fetch(query);
+//   console.log(products)
+//   return products;
 
-}
+// }
 
 const Shop = async () => {
-  const products = await fetchProducts();
+  // const products = await fetchProducts();
 
   return (
   <div>
@@ -64,11 +64,11 @@ const Shop = async () => {
                 </div>
 
   
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+  {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
     {products.map((product:Product) =>(
         <ProductListing product={product}  key={product.id}/>
       ))}     
-</div>
+</div> */}
         <div className="justify-center mx-auto">
                 <Page />
               </div>
